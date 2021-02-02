@@ -80,7 +80,43 @@
   </style>
 
   <script>
+    
+    // Variables 
+    // get html elements displaying clock hands
+    const secHand = document.querySelector('.second-hand'),
+      minHand = document.querySelector('.min-hand'),
+      hrHand = document.querySelector('.hour-hand')
 
+    // Functions
+    const setTime = () => {
+      // get new time once function called
+      let t = new Date()
+      // get seconds
+      let seconds = t.getSeconds() * 6 // 360/60
+      // apply transform depending on time value
+      secHand.style.transform = `rotate(${seconds}deg)`
+
+      // get minutes
+      let mins = (t.getMinutes() * 360/60) + (t.getSeconds() * (360/60) / 60) 
+      /* minutes hand rotation is the current minute plus how much
+      seconds passed from the current minute*/
+      // apply transform depending on time value
+      minHand.style.transform = `rotate(${mins}deg)`
+      // get seconds
+      let hours = (t.getHours() * 360/12) + (t.getMinutes() * (360/12)/60)
+      /* hours hand rotation is the current hour plus how much 
+      minutes passed from the current hour */
+      // apply transform depending on time value
+      hrHand.style.transform = `rotate(${hours}deg)`
+    }
+    
+    // Events
+    window.addEventListener("DOMContentLoaded", () => {
+      // to start immediately after page loaded not wait 1s
+      setTime()
+      // get time each second and apply changes
+      setInterval(setTime, 1000)
+    })
 
   </script>
 </body>
