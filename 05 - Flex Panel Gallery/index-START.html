@@ -125,7 +125,24 @@
   </div>
 
   <script>
+    // select all panels
+    const panels = document.querySelectorAll('.panel')
+    // toggle panel open class function 
+    // check if e.target.tagName because const gives the function the global scoop
+    const toggleOpen = (e) => e.target.tagName == 'P' ? e.target.parentElement.classList.toggle('open') : e.target.classList.toggle('open')
+    // toggle panel open-active class function
+    const toggleActive = e => {
+      // check if the transition property is font-size because it is the last transition ends 
+      if(e.propertyName == 'font-size') e.target.classList.toggle('open-active')
+    }
 
+    // add event listeners 
+    panels.forEach(panel => {
+      // on click toggle open class
+      panel.addEventListener('click', toggleOpen)
+      // on transition end in panel element, toggle open-active class
+      panel.addEventListener('transitionend',toggleActive)
+    })
   </script>
 
 
