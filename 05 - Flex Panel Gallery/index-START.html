@@ -77,9 +77,20 @@
     .panel p:nth-child(2) {
       font-size: 4em;
     }
+    .panel p:first-child{
+      transform: translateY(-100%);
+    }
+    .panel p:last-child{
+      transform:translateY(100%)
+    }
     
+    .panel.open-active p:first-child,
+    .panel.open-active p:last-child{
+      transform: translateY(0%);
+    }
     .panel.open {
       font-size: 40px;
+      flex:5;
     }
 
   </style>
