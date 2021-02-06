@@ -16,6 +16,8 @@
   </form>
   <script>
     const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    // cities container array
+    const cities = []
     // number formatter
     const numberWithCommas = (x) => {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -48,21 +50,25 @@
     const getCities = (e) => {
       fetch(endpoint)
         .then(res => res.json())
-        .then(res => {
-          // filter result according to user input 
-          // let cities=[...res].filter(city => city.city.toLowerCase().includes(e.target.value.toLowerCase()) || city.state.toLowerCase().includes(e.target.value.toLowerCase()))
-          // filter result according to user input using REGEXP
-          let cities = [...res].filter(city => {
-            let reg = new RegExp(e.target.value, 'gi')
-            return city.city.match(reg) || city.state.match(reg)
-          })
-          displayCities(cities, e.target.value)
-        })
+        .then(res => cities.push(...res))     
+    }
+    const filterCities = (search, cities) => {
+      return [...cities].filter(city => {
+        // filter result according to user input 
+        // let cities=[...res].filter(city => city.city.toLowerCase().includes(e.target.value.toLowerCase()) || city.state.toLowerCase().includes(e.target.value.toLowerCase()))
+        // filter result according to user input using REGEXP
+        let reg = new RegExp(search, 'gi')
+        return city.city.match(reg) || city.state.match(reg)
+      })
     }
 
     // on user start typing in input field, call getCities function 
-    document.querySelector('input').addEventListener('input', getCities)
-
+    window.addEventListener("DOMContentLoaded", () => {
+      getCities()
+      document.querySelector('input').addEventListener('input', (e) => {
+        displayCities(filterCities(e.target.value, cities), e.target.value)
+      })
+    })
   </script>
 </body>
 </html>
