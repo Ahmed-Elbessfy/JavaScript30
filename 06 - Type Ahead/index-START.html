@@ -16,7 +16,27 @@
   </form>
   <script>
     const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-
+    // display search results
+    const displayCities = cities => {
+      // if input field is empty, don't display any result
+      if (cities.length == 1000) {
+        // default content
+        document.querySelector('.suggestions').innerHTML = `
+          <li>Filter for a city</li>
+          <li>or a state</li>
+          `
+      } else {
+        // search results changes depending on user input
+        document.querySelector('.suggestions').innerHTML = cities.map(city => {
+          return `
+          <li>
+            <span class='name'>${city.city}, ${city.state}</span>
+            <span class='population'>${city.population}</span>
+          </li>
+        `
+        });
+      }
+    }
     // get cities from API 
     const getCities = (e) => {
       fetch(endpoint)
@@ -29,8 +49,10 @@
             let reg = new RegExp(e.target.value, 'gi')
             return city.city.match(reg) || city.state.match(reg)
           })
+          displayCities(cities)
         })
     }
+
     // on user start typing in input field, call getCities function 
     document.querySelector('input').addEventListener('input', getCities)
 
