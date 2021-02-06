@@ -16,8 +16,12 @@
   </form>
   <script>
     const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    // number formatter
+    const numberWithCommas = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
     // display search results
-    const displayCities = cities => {
+    const displayCities = (cities, val) => {
       // if input field is empty, don't display any result
       if (cities.length == 1000) {
         // default content
@@ -28,10 +32,13 @@
       } else {
         // search results changes depending on user input
         document.querySelector('.suggestions').innerHTML = cities.map(city => {
+          let regVal = new RegExp(val, 'gi');
+          let cityName = city.city.replace(regVal, `<span class="hl">${val}</span>`);
+          let stateName = city.state.replace(regVal, `<span class='hl'>${val}</span>`);
           return `
           <li>
-            <span class='name'>${city.city}, ${city.state}</span>
-            <span class='population'>${city.population}</span>
+            <span class='name'>${cityName}, ${stateName}</span>
+            <span class='population'>${numberWithCommas(city.population)}</span>
           </li>
         `
         });
@@ -49,7 +56,7 @@
             let reg = new RegExp(e.target.value, 'gi')
             return city.city.match(reg) || city.state.match(reg)
           })
-          displayCities(cities)
+          displayCities(cities, e.target.value)
         })
     }
 
