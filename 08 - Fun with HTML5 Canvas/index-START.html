@@ -24,9 +24,13 @@
     ctx.strokeStyle = '#bada55'
     ctx.lineJoin = 'round'
     ctx.lineCap = 'round'
+    ctx.lineWidth = 1
+    ctx.globalCompositeOperation = 'multiply'
     let isDrawing = false
     let offsetX = 0
     let offsetY = 0
+    let hue = 0
+    let widthInc = true
 
     const draw = e => {
       if (isDrawing) {
@@ -34,8 +38,12 @@
         ctx.moveTo(offsetX, offsetY)
         ctx.lineTo(e.offsetX, e.offsetY)
         ctx.stroke()
+        ctx.strokeStyle = `hsl(${hue},100%,50%)`
         offsetX = e.offsetX;
         offsetY = e.offsetY
+        hue = hue <= 360 ? hue + 1 : 0
+        widthInc = ctx.lineWidth >= 100 || ctx.lineWidth <= 1 ? !widthInc : widthInc
+        ctx.lineWidth = widthInc ? ctx.lineWidth + 1 : ctx.lineWidth - 1
       }
     }
 
