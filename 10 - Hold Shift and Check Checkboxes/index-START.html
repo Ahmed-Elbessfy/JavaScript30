@@ -114,7 +114,12 @@
       console.log(e, i)
     }
 
-   
+    inputs.forEach((input, i) => {
+      input.addEventListener('click', (e) => {
+        // pass current checked input index & event to handleCheck function
+        handleCheck(e, i)
+      })
+    })
   </script>
 </body>
 </html>
