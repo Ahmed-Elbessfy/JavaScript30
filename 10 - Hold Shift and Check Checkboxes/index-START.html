@@ -111,7 +111,13 @@
        maximum value of (current checked input index, lastChecked value) and check every input in between
     */
     const handleCheck = (e, i) => {
-      console.log(e, i)
+      if (lastChecked && e.shiftKey) {
+        for (let j = Math.min(i, lastChecked); j <= Math.max(i, lastChecked); j++) {
+          inputs[j].checked = true
+        }
+      } else {
+        lastChecked = i
+      }
     }
 
     inputs.forEach((input, i) => {
