@@ -160,3 +160,8 @@ input[type=range]::-moz-range-thumb {
   background: #ffc600;
   cursor: pointer;
 }
+
+button.toggle__view{
+  font-size: 20px;
+  padding: 5px;
+}
