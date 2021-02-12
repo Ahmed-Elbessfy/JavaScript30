@@ -13,6 +13,14 @@ const togglePlay = () => {
     playBtn.textContent = video.paused ?  '►' : '❚ ❚';
 } 
 
+// skip forward/backward
+const skip = (e) => {
+    // modify video current time depending on data-set attribute value
+    video.currentTime += parseInt(e.target.dataset.skip)
+}
+
 // event listeners 
 // play and pause video
 playBtn.addEventListener('click', togglePlay)
+// skip video
+skipBtns.forEach(btn => btn.addEventListener('click',skip))
