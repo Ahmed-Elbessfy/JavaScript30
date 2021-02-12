@@ -22,5 +22,6 @@ const skip = (e) => {
 // event listeners 
 // play and pause video
 playBtn.addEventListener('click', togglePlay)
+video.addEventListener('click', togglePlay)
 // skip video
 skipBtns.forEach(btn => btn.addEventListener('click',skip))
