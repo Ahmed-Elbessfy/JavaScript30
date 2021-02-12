@@ -25,6 +25,14 @@ const playProgress = () => {
     progressBar.style.flexBasis = ((video.currentTime / video.duration) * 100) + '%'
 }
 
+// adjust sound & speed
+const modifyRanges = (e) => {
+    /* select which video property to modify depending 
+    on range name attribute set in html, then set  
+    property value to range value
+    */
+    video[e.target.name] = e.target.value
+}
 
 // event listeners 
 // play and pause video
@@ -32,6 +40,7 @@ playBtn.addEventListener('click', togglePlay)
 video.addEventListener('click', togglePlay)
 // skip video
 skipBtns.forEach(btn => btn.addEventListener('click',skip))
-
 // progress bar auto adjustment
 video.addEventListener('timeupdate', playProgress)
+// adjust sound & speed
+ranges.forEach(range => range.addEventListener('change',modifyRanges))
