@@ -19,9 +19,19 @@ const skip = (e) => {
     video.currentTime += parseInt(e.target.dataset.skip)
 }
 
+// adjust progress bar 
+const playProgress = () => {
+    // modify progressBar width to be equal to how much played form the video
+    progressBar.style.flexBasis = ((video.currentTime / video.duration) * 100) + '%'
+}
+
+
 // event listeners 
 // play and pause video
 playBtn.addEventListener('click', togglePlay)
 video.addEventListener('click', togglePlay)
 // skip video
 skipBtns.forEach(btn => btn.addEventListener('click',skip))
+
+// progress bar auto adjustment
+video.addEventListener('timeupdate', playProgress)
