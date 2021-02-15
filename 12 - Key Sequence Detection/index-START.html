@@ -6,7 +6,21 @@
   <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
-<script>
-</script>
+  <script>
+    let pressed = [], magicWord = 'buzz'
+    window.addEventListener('keydown', (e) => {
+      // pass clicked key to pressed
+      pressed.push(e.key)
+      // 4 is length of the magicWord
+      if (pressed.length > 4) {
+        // if user clicked more than magicWord length remove first letter from pressed array
+        pressed.shift()
+      }
+      // check pressed keys form the magicWord
+      if (pressed.join('') == magicWord) {
+        cornify_add()
+      }
+    })
+  </script>
 </body>
 </html>
