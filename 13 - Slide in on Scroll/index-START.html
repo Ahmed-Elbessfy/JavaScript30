@@ -240,7 +240,29 @@
 
       // apply slide function
       const sildeEffect = () => {
-        console.count("called");
+        // select all images
+        const images = document.querySelectorAll(".slide-in");
+        /*
+        loop through every image and check for : 
+        - if half image is in the view port
+        - if the scroll didn't fully passed the image so it doesn't appear in the view port
+        -- if both conditions is true, add active class to apply silde
+        -- if any is not true, remove active class to reapply slide effect again wethier user 
+        is scrolling from top to bottom or vice verse (( second condition is for this ))
+        */
+        images.forEach((img) => {
+          // half the image is shown
+          const scrollHalfImg =
+              img.offsetTop - window.innerHeight + img.height / 2 <
+              window.scrollY,
+            // all the image is off the view port
+            imgPassed = img.offsetTop + img.height > window.scrollY;
+          if (scrollHalfImg && imgPassed) {
+            img.classList.add("active");
+          } else {
+            img.classList.remove("active");
+          }
+        });
       };
       // call sideEffect function on scrolling
       // use debounce fucntion to reduce sideEffect calls to improve performance
