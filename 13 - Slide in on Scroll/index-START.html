@@ -237,6 +237,14 @@
           if (callNow) func.apply(context, args);
         };
       }
+
+      // apply slide function
+      const sildeEffect = () => {
+        console.count("called");
+      };
+      // call sideEffect function on scrolling
+      // use debounce fucntion to reduce sideEffect calls to improve performance
+      document.addEventListener("scroll", debounce(sildeEffect));
     </script>
 
     <style>
