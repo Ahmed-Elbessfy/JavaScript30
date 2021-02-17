@@ -57,6 +57,42 @@
       const addItems = document.querySelector(".add-items");
       const itemsList = document.querySelector(".plates");
       const items = [];
+
+      // functions
+      // display list
+      const displayList = (plates) => {
+        // loop through plates & create li for each plate
+        itemsList.innerHTML = plates.map((ie, i) => {
+          return `
+            <li>
+                <input type="checkbox" data-index=${i} id="item${i}" ${
+            ie.checked ? "checked" : ""
+          } />
+                <label for="item${i}">${ie.text}</label>
+              </li>
+          `;
+        });
+      };
+      // add plate
+      const addPlate = () => {
+        // user input value
+        const text = document.querySelector("[name=item]").value;
+        // add new plate to plate list
+        items.push({ text, checked: false });
+        // display plate list with the new plate
+        displayList(items);
+      };
+
+      // events
+      // display plates on loading
+      document.addEventListener("DOMContentLoaded", displayList(items));
+      addItems.addEventListener("submit", (e) => {
+        // prevent default action to submit and reload the page
+        e.preventDefault();
+        addPlate();
+        // reset form input to default state
+        e.target.reset();
+      });
     </script>
   </body>
 </html>
