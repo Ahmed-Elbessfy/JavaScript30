@@ -85,6 +85,19 @@
         displayList(items);
       };
 
+      // check plate
+      const checkPlate = (e) => {
+        // if clicked element is an input
+        if (e.target.tagName == "INPUT") {
+          // change checked value to the opposite value
+          items[e.target.dataset.index].checked = !items[e.target.dataset.index]
+            .checked;
+          // update local storage
+          localStorage.setItem("items", JSON.stringify(items));
+          // display plate list with the update
+          displayList(items);
+        }
+      };
       // events
       // display plates on loading
       document.addEventListener("DOMContentLoaded", displayList(items));
@@ -95,6 +108,8 @@
         // reset form input to default state
         e.target.reset();
       });
+      // check plate event
+      itemsList.addEventListener("click", checkPlate);
     </script>
   </body>
 </html>
