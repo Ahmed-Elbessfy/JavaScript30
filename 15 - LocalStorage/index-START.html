@@ -50,12 +50,19 @@
       <form class="add-items">
         <input type="text" name="item" placeholder="Item Name" required />
         <input type="submit" value="+ Add Item" />
+        <button type="button" class="deleteAll">delete all</button>
       </form>
     </div>
 
     <script>
+      /*
+      clear all
+      check all
+      uncheck all
+      */
       const addItems = document.querySelector(".add-items");
       const itemsList = document.querySelector(".plates");
+      const delAllBtn = document.querySelector(".deleteAll");
       const items = JSON.parse(localStorage.getItem("items")) || [];
 
       // functions
@@ -98,6 +105,15 @@
           displayList(items);
         }
       };
+      // delete all plates function
+      const deleteAllPlates = (e) => {
+        // empty items array
+        items.splice(0, items.length);
+        // empty local Storage
+        localStorage.setItem("items", JSON.stringify(""));
+        // display plate list with the new updates
+        displayList(items);
+      };
       // events
       // display plates on loading
       document.addEventListener("DOMContentLoaded", displayList(items));
@@ -110,6 +126,8 @@
       });
       // check plate event
       itemsList.addEventListener("click", checkPlate);
+      // delete all plates event
+      delAllBtn.addEventListener("click", deleteAllPlates);
     </script>
   </body>
 </html>
