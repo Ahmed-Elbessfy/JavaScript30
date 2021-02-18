@@ -68,16 +68,17 @@
       // display list
       const displayList = (plates) => {
         // loop through plates & create li for each plate
-        itemsList.innerHTML = plates.map((ie, i) => {
-          return `
-            <li>
+        itemsList.innerHTML = plates
+          .map((ie, i) => {
+            return `<li>
                 <input type="checkbox" data-index=${i} id="item${i}" ${
-            ie.checked ? "checked" : ""
-          } />
+              ie.checked ? "checked" : ""
+            } />
                 <label for="item${i}">${ie.text}</label>
-              </li>
-          `;
-        });
+              </li>`;
+          })
+          .join("");
+        // join added to prevent adding extra comma between plates since map returns array including the separated comma and innerHTML method consider it as element
       };
       // add plate
       const addPlate = () => {
