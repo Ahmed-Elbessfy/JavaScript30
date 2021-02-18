@@ -121,7 +121,7 @@
         // make all items check property true
         items.forEach((pl) => (pl.checked = true));
         // set local storage to new items value
-        localStorage.setItem("items", items);
+        localStorage.setItem("items", JSON.stringify(items));
         // display plate list with the new updates
         displayList(items);
       };
