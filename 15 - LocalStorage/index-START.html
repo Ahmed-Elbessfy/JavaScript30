@@ -79,6 +79,8 @@
         const text = document.querySelector("[name=item]").value;
         // add new plate to plate list
         items.push({ text, checked: false });
+        // update local storage
+        localStorage.setItem("items", JSON.stringify(items));
         // display plate list with the new plate
         displayList(items);
       };
