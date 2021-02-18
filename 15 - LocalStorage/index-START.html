@@ -51,6 +51,7 @@
         <input type="text" name="item" placeholder="Item Name" required />
         <input type="submit" value="+ Add Item" />
         <button type="button" class="deleteAll">delete all</button>
+        <button type="button" class="checkAll">Check All</button>
       </form>
     </div>
 
@@ -63,6 +64,7 @@
       const addItems = document.querySelector(".add-items");
       const itemsList = document.querySelector(".plates");
       const delAllBtn = document.querySelector(".deleteAll");
+      const checkAllBtn = document.querySelector(".checkAll");
       const items = JSON.parse(localStorage.getItem("items")) || [];
 
       // functions
@@ -114,6 +116,15 @@
         // display plate list with the new updates
         displayList(items);
       };
+      // check all plates function
+      const checkAll = () => {
+        // make all items check property true
+        items.forEach((pl) => (pl.checked = true));
+        // set local storage to new items value
+        localStorage.setItem("items", items);
+        // display plate list with the new updates
+        displayList(items);
+      };
       // events
       // display plates on loading
       document.addEventListener("DOMContentLoaded", displayList(items));
@@ -128,6 +139,8 @@
       itemsList.addEventListener("click", checkPlate);
       // delete all plates event
       delAllBtn.addEventListener("click", deleteAllPlates);
+      // toggle check all plates event
+      checkAllBtn.addEventListener("click", checkAll);
     </script>
   </body>
 </html>
