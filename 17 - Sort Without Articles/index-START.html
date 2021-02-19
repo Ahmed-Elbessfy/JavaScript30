@@ -46,21 +46,26 @@
     <script>
       // variables
       const bands = [
-        "The Plot in You",
-        "The Devil Wears Prada",
-        "Pierce the Veil",
-        "Norma Jean",
-        "The Bled",
-        "Say Anything",
-        "The Midway State",
-        "We Came as Romans",
-        "Counterparts",
-        "Oh, Sleeper",
-        "A Skylit Drive",
-        "Anywhere But Here",
-        "An Old Dog",
-      ];
+          "The Plot in You",
+          "The Devil Wears Prada",
+          "Pierce the Veil",
+          "Norma Jean",
+          "The Bled",
+          "Say Anything",
+          "The Midway State",
+          "We Came as Romans",
+          "Counterparts",
+          "Oh, Sleeper",
+          "A Skylit Drive",
+          "Anywhere But Here",
+          "An Old Dog",
+        ],
+        bandsItem = document.querySelector("#bands");
       // functions
+      // display in html
+      const displayList = (list) => {
+        bandsItem.innerHTML = list.map((it) => `<li>${it}</li>`).join("");
+      };
       // display bands
       const displaySortedBands = (list) => {
         // sort list
@@ -72,6 +77,8 @@
           if (["A", "An", "The"].includes(b[0])) b.shift();
           return a > b ? 1 : -1;
         });
+        // display sorted list in html
+        displayList(list);
       };
       // events
       // display bands on page content loading
