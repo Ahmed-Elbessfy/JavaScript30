@@ -63,7 +63,15 @@
       // functions
       // display bands
       const displaySortedBands = (list) => {
-        console.log(list);
+        // sort list
+        list = list.sort((a, b) => {
+          // split list to check starting text
+          (a = a.split(" ")), (b = b.split(" "));
+          // if band name start with a,an,the then remove first element then sort
+          if (["A", "An", "The"].includes(a[0])) a.shift();
+          if (["A", "An", "The"].includes(b[0])) b.shift();
+          return a > b ? 1 : -1;
+        });
       };
       // events
       // display bands on page content loading
