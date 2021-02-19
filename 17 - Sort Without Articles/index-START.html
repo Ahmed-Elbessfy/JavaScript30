@@ -44,6 +44,7 @@
     <ul id="bands"></ul>
 
     <script>
+      // variables
       const bands = [
         "The Plot in You",
         "The Devil Wears Prada",
@@ -59,6 +60,16 @@
         "Anywhere But Here",
         "An Old Dog",
       ];
+      // functions
+      // display bands
+      const displaySortedBands = (list) => {
+        console.log(list);
+      };
+      // events
+      // display bands on page content loading
+      document.addEventListener("DOMContentLoaded", () =>
+        displaySortedBands(bands)
+      );
     </script>
   </body>
 </html>
