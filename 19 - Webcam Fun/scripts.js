@@ -35,6 +35,6 @@ const paintToCanvas = () => {
   return setInterval(() => ctx.drawImage(video, 0, 0, w, h), 10)
 }
 
-// test
-getVideo()
-paintToCanvas()
+// Event Listeners
+document.addEventListener('DOMContentLoaded', getVideo)
+video.addEventListener('canplay', paintToCanvas)
