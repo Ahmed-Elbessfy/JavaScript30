@@ -22,5 +22,19 @@ const getVideo = () => {
       err => console.log('Sorry! Something went wrong! ', err)
     )
 }
+
+// play video into canvas
+const paintToCanvas = () => {
+  // get video element width and height
+  const { videoWidth: w, videoHeight: h } = video
+  // set canvas width and height to be as same as video
+  canvas.width = w, canvas.height = h
+  // console.log(w, h)
+  // display video shoot in canvas every 10 ms
+  // return is to control the interval 
+  return setInterval(() => ctx.drawImage(video, 0, 0, w, h), 10)
+}
+
 // test
 getVideo()
+paintToCanvas()
