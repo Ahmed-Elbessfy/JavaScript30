@@ -14,13 +14,23 @@
       recognition.interimResults = true;
       recognition.lang = "en-US";
 
+      // create p element
+      let p = document.createElement("p");
+      document.querySelector(".words").appendChild(p);
+
       recognition.addEventListener("result", (e) => {
         // get user speech
         const transcript = [...e.results]
           .map((res) => res[0])
           .map((res) => res.transcript)
           .join("");
-        console.log(transcript);
+        // edit p content
+        p.textContent = transcript;
+        // to not replace the current content
+        if (e.results[0].isFinal) {
+          p = document.createElement("p");
+          document.querySelector(".words").appendChild(p);
+        }
       });
       // listen to user on page load
       document.addEventListener("DOMContentLoaded", recognition.start());
