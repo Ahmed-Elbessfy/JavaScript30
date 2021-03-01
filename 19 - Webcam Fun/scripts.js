@@ -35,6 +35,18 @@ const paintToCanvas = () => {
   return setInterval(() => ctx.drawImage(video, 0, 0, w, h), 10)
 }
 
+// take photo
+const takePhoto = () => {
+  // get image data as text
+  const imgData = canvas.toDataURL('image/png')
+  // add image as link to download it
+  const link = document.createElement('a')
+  link.href = imgData
+  link.setAttribute('download', 'screen_shot_of_video')
+  link.innerHTML = `<img src='${imgData}' attr='screen_shot_of_video' />`
+  strip.insertBefore(link, strip.firstChild)
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', getVideo)
 video.addEventListener('canplay', paintToCanvas)
