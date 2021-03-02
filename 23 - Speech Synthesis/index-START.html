@@ -43,14 +43,19 @@
 
       // set voice options
       const populateVoices = (e) => {
-        voicesDropdown.innerHTML = e.target
-          .getVoices()
+        voices = e.target.getVoices();
+        voicesDropdown.innerHTML = voices
           .map((v) => `<option value='${v.name}'>${v.name}, ${v.lang}</option>`)
           .join("");
       };
 
+      // set a specific voice
+      const pickVoice = (e) => {
+        msg.voice = voices.find((v) => v.name === e.target.value);
+      };
       // Event listeners
       speechSynthesis.addEventListener("voiceschanged", populateVoices);
+      voicesDropdown.addEventListener("change", pickVoice);
     </script>
   </body>
 </html>
