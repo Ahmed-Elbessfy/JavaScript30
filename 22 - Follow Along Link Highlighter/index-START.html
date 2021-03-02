@@ -48,10 +48,25 @@
     <script>
       // variables
       const triggers = document.querySelectorAll("a");
+      // create highlight span
+      const span = document.createElement("span");
+      // add highlight class to apply style
+      span.classList.add("highlight");
+      // insert span element to page
+      document.querySelector("body").appendChild(span);
 
       //  functions
       const heightLight = (e) => {
-        console.log(e.target);
+        // get hovered link data
+        let coords = e.target.getBoundingClientRect();
+        // set highligt span width to link width
+        span.style.width = `${coords.width}px`;
+        // set highligt span hieght to link hieght
+        span.style.height = `${coords.height}px`;
+        // set highligt span top position to link top position & adding scrollY to avoid scrolling effect
+        span.style.top = `${coords.top + window.scrollY}px`;
+        // set highligt span width to link width & adding scrollX to avoid scrolling effect
+        span.style.left = `${coords.left + window.scrollX}px`;
       };
       // event listeners
       triggers.forEach((a) => a.addEventListener("mouseenter", heightLight));
