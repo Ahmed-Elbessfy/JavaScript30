@@ -49,9 +49,18 @@
           .join("");
       };
 
+      // toggle voice : stop voice and restart each time voices changes
+      // startover is giving an option to start over or stop it as for further control
+      const toggle = (startOver = true) => {
+        // stop current voice
+        speechSynthesis.cancel();
+        // start with the new voice
+        if (startOver) speechSynthesis.speak(msg);
+      };
       // set a specific voice
       const pickVoice = (e) => {
         msg.voice = voices.find((v) => v.name === e.target.value);
+        toggle();
       };
       // Event listeners
       speechSynthesis.addEventListener("voiceschanged", populateVoices);
