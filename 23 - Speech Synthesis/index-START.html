@@ -65,6 +65,8 @@
       // setOption is to modify msg properties according to changes of inputs
       const setOption = (e) => {
         msg[e.target.name] = e.target.value;
+        // call toggle to restart speaking with the new settings
+        toggle();
       };
       // Event listeners
       speechSynthesis.addEventListener("voiceschanged", populateVoices);
