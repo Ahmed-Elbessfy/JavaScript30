@@ -62,9 +62,14 @@
         msg.voice = voices.find((v) => v.name === e.target.value);
         toggle();
       };
+      // setOption is to modify msg properties according to changes of inputs
+      const setOption = (e) => {
+        msg[e.target.name] = e.target.value;
+      };
       // Event listeners
       speechSynthesis.addEventListener("voiceschanged", populateVoices);
       voicesDropdown.addEventListener("change", pickVoice);
+      options.forEach((option) => option.addEventListener("change", setOption));
     </script>
   </body>
 </html>
