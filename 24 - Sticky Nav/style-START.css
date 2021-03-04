@@ -41,6 +41,9 @@ h1 {
   text-shadow: 3px 4px 0 rgba(0,0,0,0.2);
 }
 
+.medium nav {
+  position: fixed;
+}
 nav {
   background: black;
   top: 0;
