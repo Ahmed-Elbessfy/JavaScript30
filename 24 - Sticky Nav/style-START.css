@@ -68,6 +68,9 @@ nav li {
   align-items: center;
 }
 
+.medium li.logo{
+  max-width: 20rem;
+}
 li.logo {
   max-width: 0;
   overflow: hidden;
