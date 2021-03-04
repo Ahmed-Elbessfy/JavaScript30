@@ -279,10 +279,12 @@
       // functions
       const adjustView = () => {
         // console.log(nav.offsetTop, window.scrollY, nav.offsetHeight);
-        if (window.scrollY >= nav.offsetTop) {
+        if (window.scrollY >= navTop) {
           document.body.classList.add("medium");
+          document.body.style.paddingTop = nav.offsetHeight + "px";
         } else {
           document.body.classList.remove("medium");
+          document.body.style.paddingTop = "";
         }
       };
 
