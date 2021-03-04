@@ -25,6 +25,13 @@ body {
   transition: transform 0.5s;
 }
 
+.medium .site-wrap{
+  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  -moz-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  -o-transform: scale(1.02);
+}
 header {
   text-align: center;
   height: 50vh;
