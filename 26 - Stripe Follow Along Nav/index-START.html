@@ -269,7 +269,13 @@
         // show dropdown items
         e.target.classList.add("trigger-enter");
         // setTimeout to show dropdownItems applying an effect including modifying css
-        setTimeout(() => e.target.classList.add("trigger-enter-active"), 200);
+        // only add trigger-enter-active class if trigger-enter is in the element class list to assure that only the hovered element has trigger-enter-active class so content can't be displayed without white background
+        setTimeout(
+          () =>
+            e.target.classList.contains("trigger-enter") &&
+            e.target.classList.add("trigger-enter-active"),
+          200
+        );
         // get dropdown items coordinates & dimensions
         // get navbar coordinates
         const dropdownCoords = e.target
