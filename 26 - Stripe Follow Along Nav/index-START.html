@@ -262,13 +262,36 @@
 
     <script>
       // variables
-      const triggers = document.querySelectorAll(".cool > li");
+      const triggers = document.querySelectorAll(".cool > li"),
+        bgWhite = document.querySelector(".dropdownBackground");
       // functions
       const handleEnter = (e) => {
         // show dropdown items
         e.target.classList.add("trigger-enter");
         // setTimeout to show dropdownItems applying an effect including modifying css
         setTimeout(() => e.target.classList.add("trigger-enter-active"), 200);
+        // get dropdown items coordinates & dimensions
+        // get navbar coordinates
+        const dropdownCoords = e.target
+            .querySelector(`.dropdown`)
+            .getBoundingClientRect(),
+          navCoords = document.querySelector(".top").getBoundingClientRect();
+        // add open class to dropdownBackground to be displayed
+        bgWhite.classList.add("open");
+        // dropdownBackground Coordinates
+        // dropdown width & height
+        // top & left of dropdown coordinates in addition of navbar coordinates in case navbar in a different location of the start
+        const dropdownBackgroundCoords = {
+          w: dropdownCoords.width,
+          h: dropdownCoords.height,
+          top: dropdownCoords.top - navCoords.top,
+          left: dropdownCoords.left - navCoords.left,
+        };
+        // set dropdownBackground coords
+        bgWhite.style.width = `${dropdownBackgroundCoords.w}px`;
+        bgWhite.style.height = `${dropdownBackgroundCoords.h}px`;
+        bgWhite.style.top = `${dropdownBackgroundCoords.top}px`;
+        bgWhite.style.left = `${dropdownBackgroundCoords.left}px`;
       };
       // events
       triggers.forEach((tr) => tr.addEventListener("mouseenter", handleEnter));
