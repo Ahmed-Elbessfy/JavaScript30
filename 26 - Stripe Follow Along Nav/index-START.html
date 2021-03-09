@@ -293,8 +293,13 @@
         bgWhite.style.top = `${dropdownBackgroundCoords.top}px`;
         bgWhite.style.left = `${dropdownBackgroundCoords.left}px`;
       };
+      const handleLeave = (e) => {
+        e.target.classList.remove("trigger-enter", "trigger-enter-active");
+        bgWhite.classList.remove("open");
+      };
       // events
       triggers.forEach((tr) => tr.addEventListener("mouseenter", handleEnter));
+      triggers.forEach((tr) => tr.addEventListener("mouseleave", handleLeave));
     </script>
   </body>
 </html>
