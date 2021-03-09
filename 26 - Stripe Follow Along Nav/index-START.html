@@ -265,7 +265,10 @@
       const triggers = document.querySelectorAll(".cool > li");
       // functions
       const handleEnter = (e) => {
-        console.log(e.target);
+        // show dropdown items
+        e.target.classList.add("trigger-enter");
+        // setTimeout to show dropdownItems applying an effect including modifying css
+        setTimeout(() => e.target.classList.add("trigger-enter-active"), 200);
       };
       // events
       triggers.forEach((tr) => tr.addEventListener("mouseenter", handleEnter));
