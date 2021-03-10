@@ -42,7 +42,16 @@
         itemsX, // starting items horizontal position
         mouseX; // where mouse clicked in the horizontal direction
       // functions
-      const handleMouseClick = (e) => {};
+      const handleMouseClick = (e) => {
+        // mouse is clicked
+        isDown = true;
+        // get mouse x coord.
+        // subtract items.offsetLeft in case items had margin or padding on the viewport
+        mouseX = e.pageX - items.offsetLeft;
+        // get items scroll x value
+        itemsX = items.scrollLeft;
+        items.classList.add("active");
+      };
       const handleMouseLeave = (e) => {};
       const handleMouseUp = (e) => {};
       const moveItems = (e) => {};
