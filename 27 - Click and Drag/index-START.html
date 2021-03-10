@@ -64,7 +64,16 @@
         //remove active class from items
         items.classList.remove("active");
       };
-      const moveItems = (e) => {};
+      const moveItems = (e) => {
+        // apply effect only if mouse is clicked
+        if (isDown) {
+          // get new mouse x coord & how far mouse moved
+          let newMouseX = e.pageX - items.offsetLeft,
+            newItemsX = (newMouseX - mouseX) * 4;
+          // move items horizontally as much as mouse moved
+          items.scrollLeft = itemsX - newItemsX;
+        }
+      };
       // events
       // mouse clicked
       items.addEventListener("mousedown", handleMouseClick);
