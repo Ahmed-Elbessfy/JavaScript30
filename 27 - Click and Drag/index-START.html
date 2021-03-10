@@ -52,7 +52,12 @@
         itemsX = items.scrollLeft;
         items.classList.add("active");
       };
-      const handleMouseLeave = (e) => {};
+      const handleMouseLeave = () => {
+        // set isDown to false to stop scrolling
+        isDown = false;
+        //remove active class from items
+        items.classList.remove("active");
+      };
       const handleMouseUp = (e) => {};
       const moveItems = (e) => {};
       // events
