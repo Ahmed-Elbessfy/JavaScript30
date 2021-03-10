@@ -58,7 +58,12 @@
         //remove active class from items
         items.classList.remove("active");
       };
-      const handleMouseUp = (e) => {};
+      const handleMouseUp = (e) => {
+        // set isDown to false to stop scrolling
+        isDown = false;
+        //remove active class from items
+        items.classList.remove("active");
+      };
       const moveItems = (e) => {};
       // events
       // mouse clicked
