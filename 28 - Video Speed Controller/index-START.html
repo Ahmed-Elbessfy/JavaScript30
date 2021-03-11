@@ -23,11 +23,25 @@
     <script>
       // variables
       const speedBar = document.querySelector(".speed"),
-        speedInd = document.querySelector(".speedBar");
+        speedInd = document.querySelector(".speed-bar");
 
       // functions
-
+      const setSpeed = (e) => {
+        // get current mouse cursor position
+        // subtract speedBar offset top in case speed bar is not at the top of the page
+        let current = e.pageY - speedBar.offsetTop;
+        // percentage of current muse position to total speed bar height
+        let percent = current / speedBar.offsetHeight;
+        // minimum & maximum speed values
+        let min = 0.4,
+          max = 4;
+        // set speed indicator height
+        speedInd.style.height = `${Math.round(percent * 100)}%`;
+        // set speed indicator text content
+        speedInd.textContent = (percent * (max - min) + min).toFixed(2) + "x";
+      };
       // events
+      speedBar.addEventListener("mousemove", setSpeed);
     </script>
   </body>
 </html>
