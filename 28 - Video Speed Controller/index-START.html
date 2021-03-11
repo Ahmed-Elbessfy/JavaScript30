@@ -23,7 +23,8 @@
     <script>
       // variables
       const speedBar = document.querySelector(".speed"),
-        speedInd = document.querySelector(".speed-bar");
+        speedInd = document.querySelector(".speed-bar"),
+        video = document.querySelector("video");
 
       // functions
       const setSpeed = (e) => {
@@ -39,6 +40,8 @@
         speedInd.style.height = `${Math.round(percent * 100)}%`;
         // set speed indicator text content
         speedInd.textContent = (percent * (max - min) + min).toFixed(2) + "x";
+        // set video speed
+        video.playbackRate = percent * (max - min) + min;
       };
       // events
       speedBar.addEventListener("mousemove", setSpeed);
