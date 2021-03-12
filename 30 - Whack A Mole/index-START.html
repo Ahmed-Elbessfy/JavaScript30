@@ -53,7 +53,7 @@
         const hole = randomNum(0, holes.length);
         // if hole == previous, then recal the function to recreate new one
         if (lastHole == hole) {
-          pickHole();
+          return pickHole();
         }
         // store hole number to be checked next time pickHole called
         lastHole = hole;
