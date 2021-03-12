@@ -44,7 +44,9 @@
       // score is to save use score
       let lastHole,
         timeUp = false,
-        score = 0;
+        score = 0,
+        // showMoleTimeout to store timeout of show mole in to be cleared when needed
+        showMoleTimeout;
 
       // functions
       // create random number in range
@@ -74,7 +76,7 @@
         // show mole
         holes[moleInd].classList.add("up");
         // hide mole after random time
-        setTimeout(() => {
+        showMoleTimeout = setTimeout(() => {
           // hide mole
           holes[moleInd].classList.remove("up");
           // recall showMole to keep game going only if there is time left
@@ -92,6 +94,9 @@
         document
           .querySelectorAll(".up")
           .forEach((mole) => mole.classList.remove("up"));
+        // stop mole waiting time to be hidden and hide immediately
+        // this is because more than mole may appear at once since each mole show period is different
+        clearTimeout(showMoleTimeout);
         // recall showMole to start new round after scoring a point
         showMole();
       };
@@ -99,6 +104,8 @@
       const startGame = () => {
         // reset timeUp to its initial state to start over again
         timeUp = false;
+        // stop mole waiting time to be hidden and hide immediately
+        clearTimeout(showMoleTimeout);
         // reset score
         score = 0;
         // display score
