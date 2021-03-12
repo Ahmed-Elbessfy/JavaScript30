@@ -1,6 +1,7 @@
 // variables
 // variable to store interval
-let countDown;
+let countDown,
+  timers = document.querySelectorAll('[data-time]');
 // functions
 //display timer
 const displayTimer = s => {
@@ -47,5 +48,12 @@ const timer = s => {
   }, 1000)
 }
 
-// events
+// start timer
+const startTimer = e => {
+  // call timer function to start timer
+  timer(e.target.dataset.time)
+}
 
+
+// events
+timers.forEach(btn => btn.addEventListener('click', startTimer))
