@@ -41,8 +41,10 @@
       const moles = document.querySelectorAll(".mole");
       // lastHole to store reference of last hole index to avoid duplicate in mole show hole index
       // timeUp to check if game time is up of not
+      // score is to save use score
       let lastHole,
-        timeUp = false;
+        timeUp = false,
+        score = 0;
 
       // functions
       // create random number in range
@@ -80,9 +82,27 @@
         }, time);
       };
 
+      // score a point
+      const scorePoint = (e) => {
+        // increase score with 1 point
+        score++;
+        // show new score on board
+        scoreBoard.textContent = score;
+        // hide all moles : this is because more than mole may appear at once since each mole show period is different
+        document
+          .querySelectorAll(".up")
+          .forEach((mole) => mole.classList.remove("up"));
+        // recall showMole to start new round after scoring a point
+        showMole();
+      };
+
       const startGame = () => {
         // reset timeUp to its initial state to start over again
         timeUp = false;
+        // reset score
+        score = 0;
+        // display score
+        scoreBoard.textContent = score;
         // start showing moles
         showMole();
         // after a specific time, stop game
@@ -95,6 +115,7 @@
       };
 
       // event
+      moles.forEach((mole) => mole.addEventListener("click", scorePoint));
     </script>
   </body>
 </html>
