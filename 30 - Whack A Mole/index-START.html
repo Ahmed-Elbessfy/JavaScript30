@@ -106,10 +106,6 @@
         timeUp = false;
         // stop mole waiting time to be hidden and hide immediately
         clearTimeout(showMoleTimeout);
-        // reset score
-        score = 0;
-        // display score
-        scoreBoard.textContent = score;
         // start showing moles
         showMole();
         // after a specific time, stop game
@@ -118,6 +114,11 @@
           timeUp = true;
           // show user a notification
           alert("Time up");
+          // clear score after showing he end alert
+          // reset score
+          score = 0;
+          // display score
+          scoreBoard.textContent = score;
         }, 10000);
       };
 
