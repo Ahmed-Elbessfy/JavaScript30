@@ -58,7 +58,7 @@
       const pickHole = () => {
         // get random hole index
         const hole = randomNum(0, holes.length);
-        // if hole == previous, then recal the function to recreate new one
+        // if hole == previous, then recall the function to recreate new one
         if (lastHole == hole) {
           return pickHole();
         }
