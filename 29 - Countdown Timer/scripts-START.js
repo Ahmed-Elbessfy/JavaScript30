@@ -12,12 +12,23 @@ const displayTimer = s => {
   // display timer in page title
   document.title = `${min}:${sec < 10 ? '0' + sec : sec}`
 }
+// displayEndTime
+const endTime = s => {
+  // get back time
+  const end = new Date(s),
+    hr = end.getHours(), mins = end.getMinutes()
+  // display end time
+  // display time in 12 hours format with 'am', 'pm'
+  document.querySelector('.display__end-time').textContent = `Be Back at ${hr > 12 ? hr - 12 : hr}:${mins > 10 ? mins : '0' + mins} ${hr > 12 ? 'pm' : 'am'}`
+}
 const timer = s => {
   // get current time in mille seconds
   const now = Date.now(),
     // end time in mille seconds
     then = now + s * 1000
 
+  // display end time
+  endTime(then)
   // display timer once  timer function called since setInterval must wait for first second
   displayTimer(s)
   countDown = setInterval(() => {
