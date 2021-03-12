@@ -39,7 +39,10 @@
       const holes = document.querySelectorAll(".hole");
       const scoreBoard = document.querySelector(".score");
       const moles = document.querySelectorAll(".mole");
-      let lastHole;
+      // lastHole to store reference of last hole index to avoid duplicate in mole show hole index
+      // timeUp to check if game time is up of not
+      let lastHole,
+        timeUp = false;
 
       // functions
       // create random number in range
@@ -72,10 +75,25 @@
         setTimeout(() => {
           // hide mole
           holes[moleInd].classList.remove("up");
-          // recall showMole to keep game going
-          showMole();
+          // recall showMole to keep game going only if there is time left
+          if (!timeUp) showMole();
         }, time);
       };
+
+      const startGame = () => {
+        // reset timeUp to its initial state to start over again
+        timeUp = false;
+        // start showing moles
+        showMole();
+        // after a specific time, stop game
+        setTimeout(() => {
+          // stop game
+          timeUp = true;
+          // show user a notification
+          alert("Time up");
+        }, 10000);
+      };
+
       // event
     </script>
   </body>
