@@ -56,6 +56,18 @@ const startTimer = e => {
   timer(e.target.dataset.time)
 }
 
+// get custom timer from user input
+const startCustomTimer = e => {
+  // prevent reloading
+  e.preventDefault()
+  // get minutes input value
+  const timeLeft = e.target.minutes.value
+  // start timer
+  // multiply by 60 since user input is in minutes
+  timer(parseInt(timeLeft) * 60)
 
+}
 // events
 timers.forEach(btn => btn.addEventListener('click', startTimer))
+// select form with its name
+document.customForm.addEventListener('submit', startCustomTimer)
