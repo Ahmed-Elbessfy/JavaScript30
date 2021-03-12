@@ -23,6 +23,8 @@ const endTime = s => {
   document.querySelector('.display__end-time').textContent = `Be Back at ${hr > 12 ? hr - 12 : hr}:${mins > 10 ? mins : '0' + mins} ${hr > 12 ? 'pm' : 'am'}`
 }
 const timer = s => {
+  // reset countDown 
+  clearInterval(countDown)
   // get current time in mille seconds
   const now = Date.now(),
     // end time in mille seconds
